@@ -7,16 +7,16 @@ router.post('/', [
     UserController.insertUser
 ])
 
-router.post('/signin', [
+router.post('/sign-in', [
     UserController.signIn
 ])
 
-router.post('/signout', [
+router.post('/sign-out', [
     AuthValidationMiddleware.validateJWT,
     UserController.signOut
 ])
 
-router.post('/signoutAll', [
+router.post('/signout-all', [
     AuthValidationMiddleware.validateJWT,
     UserController.signOutAll
 ])
