@@ -17,7 +17,7 @@ const getTransactionsSummary = (transactions, year, month) => {
 const getTransactionsTotals = (transactions) => {
     let inflow = 0, outflow = 0, total = 0
     transactions.forEach((tx) => {
-        tx.amount > 0 ? inflow += tx.amount : outflow += Math.abs(tx.amount); 
+        tx.amount > 0 ? inflow += tx.amount : outflow += Math.abs(tx.amount)
     })
     total = inflow - outflow
     return [inflow, outflow, total];
@@ -103,7 +103,8 @@ const getTransactionsGroups = (transactions) => {
             day: groupDate.format('D'),
             monthName: groupDate.format('MMMM'),
             year: groupDate.format('YYYY'),
-            transactions: transactions
+            transactions: transactions,
+            total: getTransactionsTotals(transactions)[2]
         })
     })
 

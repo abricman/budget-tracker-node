@@ -3,7 +3,7 @@ const Wallet = require('../models/wallet.model')
 exports.getWallets = async (req, res) => {
     try {
         const wallets = await Wallet.find({})
-        return wallets
+        return res.send(wallets)
     } catch (e) {
         console.log(e)
         res.status(400).send()

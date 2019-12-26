@@ -35,23 +35,6 @@ const transactionSchema = new mongoose.Schema({
     bufferCommands: false
 })
 
-/* transactionSchema.virtual('wallet_record', {
-    ref: 'Wallet',
-    localField: 'wallet',
-    foreignField: 'userId',
-    justOne: true
-})
-
-transactionSchema.virtual('category_record', {
-    ref: 'Category',
-    localField: 'category',
-    foreignField: 'userId',
-    justOne: true
-})
-
-transactionSchema.set('toObject', { virtuals: true });
-transactionSchema.set('toJSON', { virtuals: true }); */
-
 transactionSchema.statics.findMonthlyTransactions = async (year, month, sort) => {
     const transactions = await Transaction.find({ date: { $year: year, $month: month} })
     return transactions

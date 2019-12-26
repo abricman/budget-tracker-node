@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 //const validator = require('validator')
 
-const categorySchema = new mongoose.Schema({
+const CategorySchema = new mongoose.Schema({
     userId: {
         type: Schema.ObjectId
     },
@@ -11,16 +11,15 @@ const categorySchema = new mongoose.Schema({
     },
     type: {
         type: String
-    }/* ,
-    avatar: {
-        type: Schema.String
-    } */
+    },
+    iconName: {
+        type: String
+    }
 }, {
     timestamps: true,
     bufferCommands: false
 })
 
-
-const Category = mongoose.model('Category', categorySchema)
+const Category = mongoose.model('Category', CategorySchema)
 
 module.exports = Category
