@@ -18,7 +18,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "mongodb": "^3.3.1",
-    "mongoose": "^5.6.11",
+    "mongoose": "^5.8.3",
     "path": "^0.12.7",
     "validator": "^11.1.0"
   },

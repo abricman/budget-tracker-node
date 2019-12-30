@@ -12,8 +12,8 @@ const CategorySchema = new mongoose.Schema({
     type: {
         type: String
     },
-    iconName: {
-        type: String
+    icon: {
+        type: Object
     }
 }, {
     timestamps: true,
