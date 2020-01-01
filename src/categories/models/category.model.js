@@ -12,7 +12,7 @@ const CategorySchema = new mongoose.Schema({
     type: {
         type: String
     },
-    icon: {
+    faIcon: {
         type: Object
     }
 }, {

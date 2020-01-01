@@ -2,7 +2,10 @@ const Wallet = require('../models/wallet.model')
 
 exports.getWallets = async (req, res) => {
     try {
-        const wallets = await Wallet.find({})
+        const wallets = await Wallet.
+        find({}).
+        populate('currency').
+        exec()
         return res.send(wallets)
     } catch (e) {
         console.log(e)

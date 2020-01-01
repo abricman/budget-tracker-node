@@ -1,17 +1,17 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-//const validator = require('validator')
 
 const walletSchema = new mongoose.Schema({
     userId: {
         type: Schema.ObjectId
     },
+    currency: {
+        type: Schema.ObjectId,
+        ref: "Currency"
+    },
     name: {
         type: String
-    }/* ,
-    avatar: {
-        type: Schema.String
-    } */
+    }
 }, {
     timestamps: true,
     bufferCommands: false
