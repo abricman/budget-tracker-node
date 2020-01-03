@@ -18,6 +18,10 @@ const currencySchema = new mongoose.Schema({
     bufferCommands: false
 })
 
+currencySchema.methods.toJSON = function () {
+    const { _id, name } = this.toObject()
+    return { _id, name }
+}
 
 const Currency = mongoose.model('Currency', currencySchema)
 

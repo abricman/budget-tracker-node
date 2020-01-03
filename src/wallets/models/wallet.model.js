@@ -5,18 +5,25 @@ const walletSchema = new mongoose.Schema({
     userId: {
         type: Schema.ObjectId
     },
+    name: {
+        type: String
+    },
     currency: {
         type: Schema.ObjectId,
         ref: "Currency"
     },
-    name: {
-        type: String
+    balance: {
+        type: Number
     }
 }, {
     timestamps: true,
     bufferCommands: false
 })
 
+walletSchema.methods.toJSON = function () {
+    const { _id, name, currency, balance} = this.toObject()
+    return { _id, name, currency, balance}
+}
 
 const Wallet = mongoose.model('Wallet', walletSchema)
 

@@ -2,10 +2,7 @@ const Wallet = require('../models/wallet.model')
 
 exports.getWallets = async (req, res) => {
     try {
-        const wallets = await Wallet.
-        find({}).
-        populate('currency').
-        exec()
+        const wallets = await Wallet.find({userId: req.user._id})
         return res.send(wallets)
     } catch (e) {
         console.log(e)
@@ -25,7 +22,7 @@ exports.insertWallet = async (req, res) => {
 
 exports.updateWallet = async (req, res) => {
     try {
-        const updatedWallet = await Wallet.findByIdAndUpdate(req.params.id, req.body)
+        const updatedWallet = await Wallet.findOneAndUpdate({_id: req.params.id, userId: req.user._id}, req.body)
         res.send(updatedWallet)
     } catch (e) {
         console.log(e)
@@ -35,7 +32,7 @@ exports.updateWallet = async (req, res) => {
 
 exports.deleteWallet = async (req, res) => {
     try {
-        await Wallet.findByIdAndDelete(req.params.id)
+        await Wallet.findOneAndDelete({_id: req.params.id, userId: req.user._id})
         res.send()
     } catch (e) {
         console.log(e)

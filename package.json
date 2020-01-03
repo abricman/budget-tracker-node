@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "env-cmd -f src/common/config/dev.env nodemon src/index.js",
     "start": "node src/index.js",
+    "inspect": "env-cmd -f src/common/config/dev.env nodemon --inspect src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
