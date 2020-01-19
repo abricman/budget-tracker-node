@@ -7,6 +7,7 @@ const transactionRouter = require('./transactions/routers/transaction.router')
 const categoryRouter = require('./categories/routers/category.router')
 const walletRouter = require('./wallets/routers/wallet.router')
 const currenciesRouter = require('./currencies/routers/currencies.router')
+const budgetsRouter = require('./budgets/routers/budgets.router')
 
 // Connect to databases
 db.mongoose()
@@ -22,6 +23,7 @@ app.use('/transactions', transactionRouter)
 app.use('/categories', categoryRouter)
 app.use('/wallets', walletRouter)
 app.use('/currencies', currenciesRouter)
+app.use('/budgets', budgetsRouter)
 
 /* app.use('api/v1/users', userRouter)
 app.use('api/v1/users/:userId/transactions', transactionRouter) */

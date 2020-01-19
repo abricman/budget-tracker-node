@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-//const validator = require('validator')
+const generalHelpers = require('../../common/utils/generalHelpers')
 
 const transactionSchema = new mongoose.Schema({
     userId: {
@@ -43,6 +43,10 @@ transactionSchema.statics.findMonthlyTransactions = async (year, month, sort) =>
 transactionSchema.statics.getTransactionsSummary = async (transactions) => {
     let summary = {}
     return summary
+}
+
+transactionSchema.methods.toJSON = function() {
+    return generalHelpers.deleteSystemFields(this.toObject())
 }
 
 const Transaction = mongoose.model('Transaction', transactionSchema)

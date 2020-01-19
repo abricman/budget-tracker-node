@@ -31,6 +31,31 @@ exports.getMonthlyTransactions = async (req, res) => {
     }
 }
 
+exports.getWalletTransactions = async (req, res) => {
+    try {
+        // Get and check params validity
+        const { startDate, endDate, walletId} = req.body
+        if (!startDate || !endDate || !walletId) res.status(400).send('Can\t get transaction. Missing parameters.')
+        // Set transactions time frame
+        // Get users transactions for the specified timeframe
+        let query = {
+            userId: req.user.id, 
+            date: { $gte: new Date(startDate), $lte: new Date(endDate) },
+            "wallet._id": walletId
+        }
+        let projection = { date: 1}
+        const transactions = await Transaction.
+        find(query, projection).
+        sort({ date: 1 }).
+        exec()
+        // Get the model with tabs and all transactions info
+        return res.status(200).send(transactions)
+    } catch (e) {
+        console.log(e)
+        res.status(400).send(e.message)
+    }
+}
+
 exports.getTransaction = async (req, res) => {
     try {
         const transaction = await Transaction.findOne({

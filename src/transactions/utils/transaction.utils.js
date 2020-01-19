@@ -1,4 +1,20 @@
 const moment = require('moment')
+const Transaction = require('../models/transaction.model')
+
+const getTransactionsByTimeFrame = async (userId, startDate, endDate) => {
+    let query = {
+        userId: userId, 
+        date: { $gte: startDate, $lt: endDate }
+    }
+    let projection = { date: 1, amount: 1 }
+    const transactions = await Transaction.
+    find(query, projection).
+    sort({ date: 1 }).
+    populate('wallet').
+    populate('category').
+    exec()
+    return transactions
+}
 
 const getMonthTransactionsModel = (transactions, year, month) => {
     let transactionsModel = {
@@ -112,5 +128,6 @@ const getTransactionsGroups = (transactions) => {
 }
 
 module.exports = {
-    getMonthTransactionsModel
+    getMonthTransactionsModel,
+    getTransactionsByTimeFrame
 }

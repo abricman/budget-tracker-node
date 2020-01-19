@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const generalHelpers = require('../../common/utils/generalHelpers')
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -89,6 +90,10 @@ userSchema.pre('save', async function (next) {
 
     next()
 })
+
+userSchema.methods.toJSON = function() {
+    return generalHelpers.deleteSystemFields(this.toObject())
+}
 
 const User = mongoose.model('User', userSchema)
 

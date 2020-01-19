@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-//const validator = require('validator')
+const generalHelpers = require('../../common/utils/generalHelpers')
 
-const CategorySchema = new mongoose.Schema({
+const categorySchema = new mongoose.Schema({
     userId: {
         type: Schema.ObjectId
     },
@@ -20,6 +20,10 @@ const CategorySchema = new mongoose.Schema({
     bufferCommands: false
 })
 
-const Category = mongoose.model('Category', CategorySchema)
+categorySchema.methods.toJSON = function() {
+    return generalHelpers.deleteSystemFields(this.toObject())
+}
+
+const Category = mongoose.model('Category', categorySchema)
 
 module.exports = Category
